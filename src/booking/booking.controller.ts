@@ -1,0 +1,37 @@
+import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
+import { BookingService } from './booking.service';
+import { CreateBookingDto } from './booking.dto';
+import { Booking } from './booking.schema';
+
+@Controller('bookings')
+export class BookingController {
+  constructor(private readonly bookingService: BookingService) {}
+
+  @Post()
+  async create(@Body() createBookingDto: CreateBookingDto): Promise<Booking> {
+    return this.bookingService.create(createBookingDto);
+  }
+
+  @Get()
+  async findAll(): Promise<Booking[]> {
+    return this.bookingService.findAll();
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') id: string): Promise<Booking | null> {
+    return this.bookingService.findById(id);
+  }
+
+  @Put(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() updateBookingDto: CreateBookingDto,
+  ): Promise<Booking | null> {
+    return this.bookingService.update(id, updateBookingDto);
+  }
+
+  @Delete(':id')
+  async remove(@Param('id') id: string): Promise<Booking | null> {
+    return this.bookingService.delete(id);
+  }
+}
