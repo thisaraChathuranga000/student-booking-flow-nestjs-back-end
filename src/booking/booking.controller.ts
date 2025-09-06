@@ -34,4 +34,10 @@ export class BookingController {
   async remove(@Param('id') id: string): Promise<Booking | null> {
     return this.bookingService.delete(id);
   }
+
+  @Get('count/:date')
+  async getCountByDate(@Param('date') date: string): Promise<{ date: string; count: number }> {
+    const count = await this.bookingService.getCountByDate(date);
+    return { date, count };
+  }
 }

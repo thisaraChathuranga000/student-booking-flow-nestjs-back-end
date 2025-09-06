@@ -32,4 +32,8 @@ export class BookingService {
   async delete(id: string): Promise<Booking | null> {
     return this.bookingModel.findByIdAndDelete(id).exec();
   }
+
+  async getCountByDate(date: string): Promise<number> {
+    return this.bookingModel.countDocuments({ date }).exec();
+  }
 }
