@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, ConflictException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Booking } from './booking.schema';
@@ -11,6 +11,17 @@ export class BookingService {
   ) {}
 
   async create(createBookingDto: CreateBookingDto): Promise<Booking> {
+    const existingBooking = await this.bookingModel.findOne({
+      email: createBookingDto.email,
+      date: createBookingDto.date,
+    }).exec();
+
+    if (existingBooking) {
+      throw new ConflictException(
+        `A booking already exists for email ${createBookingDto.email} on date ${createBookingDto.date}`
+      );
+    }
+
     const createdBooking = new this.bookingModel(createBookingDto);
     return createdBooking.save();
   }
@@ -35,5 +46,9 @@ export class BookingService {
 
   async getCountByDate(date: string): Promise<number> {
     return this.bookingModel.countDocuments({ date }).exec();
+  }
+
+  async findByEmailAndDate(email: string, date: string): Promise<Booking | null> {
+    return this.bookingModel.findOne({ email, date }).exec();
   }
 }

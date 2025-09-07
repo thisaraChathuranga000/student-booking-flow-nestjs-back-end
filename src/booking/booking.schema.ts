@@ -18,9 +18,6 @@ export class Booking extends Document {
 
   @Prop({ required: true })
   course: string;
-
-  @Prop({ required: true })
-  status: string;
 }
 
 export const BookingSchema = SchemaFactory.createForClass(Booking);
