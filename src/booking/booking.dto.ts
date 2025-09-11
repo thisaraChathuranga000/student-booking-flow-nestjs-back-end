@@ -4,6 +4,7 @@ export class CreateBookingDto {
   readonly email: string;
   readonly lesson: string;
   readonly course: string;
+  readonly branch: string;
 }
 
 export class CalendarInvitationDto {
@@ -16,6 +17,7 @@ export class CalendarInvitationDto {
     date: string;
     time: string;
     duration: number;
+    branch: string;
     center: {
       title: string;
       org: string;

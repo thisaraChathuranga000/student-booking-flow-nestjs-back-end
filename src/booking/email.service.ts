@@ -106,8 +106,8 @@ export class EmailService {
               <td style="padding: 8px 0; color: #1e293b;">${bookingData.center.org}</td>
             </tr>
             <tr>
-              <td style="padding: 8px 0; font-weight: 600; color: #374151;">Event:</td>
-              <td style="padding: 8px 0; color: #1e293b;">${bookingData.center.title}</td>
+              <td style="padding: 8px 0; font-weight: 600; color: #374151;">Branch:</td>
+              <td style="padding: 8px 0; color: #1e293b;">${bookingData.branch}</td>
             </tr>
             <tr>
               <td style="padding: 8px 0; font-weight: 600; color: #374151;">Date:</td>
