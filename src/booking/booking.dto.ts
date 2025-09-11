@@ -4,6 +4,7 @@ export class CreateBookingDto {
   readonly email: string;
   readonly lesson: string;
   readonly course: string;
+  readonly branch: string;
 }
 
 export class CalendarInvitationDto {
