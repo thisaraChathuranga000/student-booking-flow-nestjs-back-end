@@ -17,6 +17,7 @@ export class CalendarInvitationDto {
     date: string;
     time: string;
     duration: number;
+    branch: string;
     center: {
       title: string;
       org: string;
